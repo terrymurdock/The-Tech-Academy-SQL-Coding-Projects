@@ -351,7 +351,7 @@ EXEC [dbo].[noBooksOut]
 
 USE db_library
 GO
-CREATE PROCEDURE dbo.dueTodaySharpstown
+CREATE PROCEDURE dbo.dueTodaySharpstown1
 AS
 SELECT BOOKS.Title, BORROWER.Name, BORROWER.Address
 FROM BOOKS
@@ -360,10 +360,11 @@ ON BOOKS.BookID = BOOK_LOANS.BookID
 INNER JOIN BORROWER
 ON BORROWER.CardNo = BOOK_LOANS.CardNo
 WHERE BOOK_LOANS.BranchID = 103
-AND CONVERT(varchar(10), BOOK_LOANS.DateDue, 102) = CONVERT(varchar(10), GETDATE(),102)
+AND DateDue = '07/25/2019'
+/* CONVERT(varchar(10), BOOK_LOANS.DateDue, 102) = CONVERT(varchar(10), GETDATE(),102) */
 GO
 
-EXEC [dbo].[dueTodaySharpstown]
+EXEC [dbo].[dueTodaySharpstown1]
 
 /* 5.) For each library branch, retrieve the branch name and the total number of books loaned out from that branch. */
 
